@@ -3,6 +3,9 @@ package exporter
 import (
 	"crypto/rsa"
 	"fmt"
+	"log"
+	"net/http"
+
 	global_config "github.com/bloxapp/ssv/cli/config"
 	"github.com/bloxapp/ssv/eth1"
 	"github.com/bloxapp/ssv/eth1/goeth"
@@ -17,8 +20,6 @@ import (
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
-	"log"
-	"net/http"
 )
 
 type config struct {
@@ -26,7 +27,7 @@ type config struct {
 	DBOptions                  basedb.Options `yaml:"db"`
 	P2pNetworkConfig           p2p.Config     `yaml:"p2p"`
 
-	ETH1Addr       string `yaml:"ETH1Addr" env-required:"true"`
+	ETH1Addr       string `yaml:"ETH1Addr" env:"ETH_1_ADDR" env-required:"true"`
 	ETH1SyncOffset string `yaml:"ETH1SyncOffset" env:"ETH_1_SYNC_OFFSET"`
 	Network        string `yaml:"Network" env-default:"prater"`
 	// Exporter WS API
